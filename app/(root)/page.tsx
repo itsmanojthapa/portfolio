@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import * as motion from "framer-motion/client";
 
 const socialLinks = [
   {
@@ -133,7 +134,8 @@ const accordionItems = [
           <Badge
             key={index}
             variant="secondary"
-            className="bg-slate-700 text-white hover:bg-gray-600">
+            className="bg-slate-700 text-white hover:bg-gray-600"
+          >
             {skill}
           </Badge>
         ))}
@@ -163,14 +165,16 @@ const accordionItems = [
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300">
+                  className="text-blue-400 hover:text-blue-300"
+                >
                   <FaGithub />
                 </a>
                 <a
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300">
+                  className="text-blue-400 hover:text-blue-300"
+                >
                   <FaLink />
                 </a>
               </div>
@@ -181,7 +185,8 @@ const accordionItems = [
                 <Badge
                   key={techIndex}
                   variant="secondary"
-                  className="bg-gray-800 text-gray-200 hover:bg-gray-700">
+                  className="bg-gray-800 text-gray-200 hover:bg-gray-700"
+                >
                   {tech}
                 </Badge>
               ))}
@@ -198,7 +203,8 @@ const accordionItems = [
       <a
         href="https://itsmanojthapa.notion.site/Open-Source-Contributions-1110cfc965168045b794fc494b997564?pvs=4"
         target="_blank"
-        className="text-blue-400 hover:text-blue-300">
+        className="text-blue-400 hover:text-blue-300"
+      >
         <FaLink size={16} />
       </a>
     ),
@@ -214,7 +220,8 @@ const accordionItems = [
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300">
+                className="text-blue-400 hover:text-blue-300"
+              >
                 <FaLink />
               </a>
             </div>
@@ -224,7 +231,8 @@ const accordionItems = [
                 <Badge
                   key={techIndex}
                   variant="secondary"
-                  className="bg-gray-800 text-gray-200 hover:bg-gray-700">
+                  className="bg-gray-800 text-gray-200 hover:bg-gray-700"
+                >
                   {tech}
                 </Badge>
               ))}
@@ -238,7 +246,12 @@ const accordionItems = [
 
 export default function Home() {
   return (
-    <div className="m-5 flex min-h-screen w-screen max-w-4xl flex-col p-8 text-white">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="m-5 flex min-h-screen w-screen max-w-4xl flex-col p-8 text-white"
+    >
       <header className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div className="flex flex-col gap-2">
           <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -260,7 +273,8 @@ export default function Home() {
                 href={link.href}
                 target="_blank"
                 aria-label={link.label}
-                className="flex h-8 w-8 items-center justify-center rounded-md border border-gray-700 p-1 text-gray-400 transition-colors hover:bg-slate-800 hover:text-white">
+                className="flex h-8 w-8 items-center justify-center rounded-md border border-gray-700 p-1 text-gray-400 transition-colors hover:bg-slate-800 hover:text-white"
+              >
                 <link.icon />
               </a>
             ))}
@@ -275,37 +289,51 @@ export default function Home() {
         />
       </header>
 
-      <Accordion
-        type="multiple"
-        defaultValue={[
-          "about",
-          "experience",
-          "projects",
-          "skills",
-          "opensource",
-        ]}
-        className="w-full space-y-4">
-        {accordionItems.map((item) => (
-          <AccordionItem
-            key={item.value}
-            value={item.value}
-            className="rounded-lg border border-gray-700 bg-slate-950 bg-opacity-60">
-            <AccordionTrigger className="px-4 py-2 text-lg font-bold transition-colors hover:bg-gray-800 hover:no-underline">
-              {item.titleExtra ? (
-                <div className="flex items-center gap-3">
-                  {item.title}
-                  {item.titleExtra}
-                </div>
-              ) : (
-                item.title
-              )}
-            </AccordionTrigger>
-            <AccordionContent className="px-4 py-2 text-gray-300">
-              {item.content}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      >
+        <Accordion
+          type="multiple"
+          defaultValue={[
+            "about",
+            "experience",
+            "projects",
+            "skills",
+            "opensource",
+          ]}
+          className="w-full space-y-4"
+        >
+          {accordionItems.map((item, index) => (
+            <motion.div
+              key={item.value}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * (index + 1), duration: 0.3 }}
+            >
+              <AccordionItem
+                value={item.value}
+                className="rounded-lg border border-gray-700 bg-slate-950 bg-opacity-70"
+              >
+                <AccordionTrigger className="px-4 py-2 text-lg font-bold transition-colors hover:bg-gray-800 hover:no-underline">
+                  {item.titleExtra ? (
+                    <div className="flex items-center gap-3">
+                      {item.title}
+                      {item.titleExtra}
+                    </div>
+                  ) : (
+                    item.title
+                  )}
+                </AccordionTrigger>
+                <AccordionContent className="px-4 py-2 text-gray-300">
+                  {item.content}
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
+          ))}
+        </Accordion>
+      </motion.div>
+    </motion.div>
   );
 }
