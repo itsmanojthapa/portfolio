@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Open_Sans } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 
-const openSans = Open_Sans({
+// const openSans = Open_Sans({
+//   subsets: ["latin"],
+//   display: "swap",
+// });
+
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -19,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${openSans.className} antialiased`}>{children}</body>
+      <body className={`${spaceGrotesk.className} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
