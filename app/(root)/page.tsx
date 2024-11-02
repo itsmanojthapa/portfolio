@@ -9,7 +9,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import * as motion from "framer-motion/client";
 
 const socialLinks = [
@@ -68,7 +73,7 @@ const projects = [
     description: "The website you are currently on.",
     technologies: ["TypeScript", "Next.js", "Tailwind CSS"],
     github: "https://github.com/itsmanojthapa/portfolio",
-    live: "https://itsmanojthapa.vercel.app/",
+    live: "https://itsmanojthapa.tech",
     image: "/portfolio.png",
   },
 ];
@@ -118,18 +123,19 @@ const accordionItems = [
       <div className="flex flex-wrap gap-2">
         {[
           "JavaScript/TypeScript",
-          "React/Next.js",
-          "Node.js/Express.js",
+          "React.js/Next.js",
+          "Node.js",
+          "Express.js",
           "Tailwind CSS",
           "SQL/NoSQL → Prisma ORM",
           "Postgress",
           "MongoDB",
-          "Docker",
           "git",
-          "Monorepo → Turborepo",
+          "Docker",
           "Postman",
           "GraphQL",
           "Figma",
+          "Monorepo → Turborepo",
         ].map((skill, index) => (
           <Badge
             key={index}
@@ -148,39 +154,43 @@ const accordionItems = [
     content: (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
-          <Card key={index} className="border-gray-700 bg-gray-900 p-4">
-            <Image
-              src={project.image}
-              alt={`${project.title} screenshot`}
-              width={300}
-              height={200}
-              className="mb-4 rounded-md object-cover"
-            />
-            <div className="mb-2 flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-white">
-                {project.title}
-              </h3>
-              <div className="flex space-x-2">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  <FaLink />
-                </a>
+          <Card key={index} className="border-gray-700 bg-gray-900">
+            <CardHeader>
+              <Image
+                src={project.image}
+                alt={`${project.title} screenshot`}
+                width={1200}
+                height={630}
+                className="rounded-lg"
+              />
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-white">
+                  {project.title}
+                </h3>
+                <div className="flex space-x-2">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    <FaGithub />
+                  </a>
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    <FaLink />
+                  </a>
+                </div>
               </div>
-            </div>
-            <p className="mb-4 text-sm text-gray-400">{project.description}</p>
-            <div className="flex flex-wrap gap-2">
+              <p className="text-sm text-gray-400">{project.description}</p>
+            </CardContent>
+            <CardFooter className="flex flex-wrap gap-2">
               {project.technologies.map((tech, techIndex) => (
                 <Badge
                   key={techIndex}
@@ -190,7 +200,7 @@ const accordionItems = [
                   {tech}
                 </Badge>
               ))}
-            </div>
+            </CardFooter>
           </Card>
         ))}
       </div>
