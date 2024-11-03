@@ -13,7 +13,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "@itsmanojthapa - Portfolio",
+  title: "@itsmanojthapa",
   description: "Portfolio website of Manoj Thapa",
 };
 
