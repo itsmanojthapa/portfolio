@@ -36,7 +36,7 @@ const socialLinks = [
   },
   {
     icon: SiHashnode,
-    href: "https://hashnode.com/@itsmanojthapa",
+    href: "https://itsmanojthapa.hashnode.dev",
     label: "Blogs",
   },
 ];
@@ -268,7 +268,7 @@ export default function Home() {
             <h1 className="text-2xl font-bold">Manoj Thapa</h1>
             <a href="mailto:imailmanojthapa@gmail.com">
               <Badge variant="secondary" className="whitespace-nowrap">
-                Hire Me!
+                Open to work
               </Badge>
             </a>
           </div>
